@@ -1,0 +1,121 @@
+:root {
+  color-scheme:dark;
+  --gold:#ffdc44; --cream:#f1e8d8; --line:#694a2b; --dim:#c7bba5;
+  font-family:Georgia,"Times New Roman",serif; color:var(--cream);
+  background:#191820;
+}
+* {box-sizing:border-box}
+body {margin:0; min-height:100vh; display:grid; place-content:center; padding:18px 78px 18px 16px;
+  background:radial-gradient(ellipse at 50% 35%,#56473c44,transparent 68%),linear-gradient(125deg,#20232ae8,#302630d6 65%,#19263cdb),url(assets/rock.png) center/cover fixed}
+button,select,input,textarea {font:inherit}
+button,select {cursor:pointer}
+button {color:var(--gold);text-shadow:1px 1px 1px #000;background:#4a1410;border:2px ridge #9b7444;border-radius:4px;padding:3px 12px}
+button:hover {filter:brightness(1.22)}
+:focus-visible {outline:2px solid #ffe99a;outline-offset:1px}
+button:disabled {opacity:.58}
+[hidden] {display:none!important}
+#window {width:min(810px,calc(100vw - 94px));height:min(718px,calc(100dvh - 36px));min-height:480px;position:relative;isolation:isolate;
+  border:6px ridge #7c5b37;border-radius:8px;background:#17130f url(assets/panel.png);box-shadow:0 0 0 2px #130d08,0 8px 26px #000b;display:flex;flex-direction:column}
+.titlebar {height:29px;flex:none;position:relative;background:#352419 url(assets/wow-title.png) repeat-x center/auto 100%;border-bottom:2px ridge #886337;display:grid;align-items:center;justify-items:center}
+.titlebar h1 {font-size:15px;font-weight:normal;color:var(--gold);text-shadow:1px 1px #000;margin:0;padding:0 64px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+#library {position:absolute;z-index:3;left:-12px;top:-10px;width:74px;height:74px;border:0;border-radius:50%;padding:8px;background:#372d24;box-shadow:1px 2px 5px #000}
+#library::after {content:"";position:absolute;inset:0;background:url(assets/wow-portrait-ring.png) center/100% 100%}
+#portrait {width:100%;height:100%;border-radius:50%;object-fit:cover}
+#closeWindow,.close {font-size:0;position:absolute;right:-5px;top:-5px;width:33px;height:33px;background:transparent url(assets/wow-close.png) center/contain no-repeat;border:0;padding:0}
+#tabs {position:absolute;left:100%;top:72px;display:flex;flex-direction:column;max-height:calc(100% - 85px);overflow-y:auto;scrollbar-width:thin}
+.tab {height:68px;width:66px;flex-shrink:0;display:grid;place-items:center;background:transparent url(assets/wow-tab.png) center/100% 100%;border:0;padding:7px 10px 7px 5px}
+.tab.active {background-image:url(assets/wow-tab-active.png)}
+.icon {width:45px;height:45px;display:inline-flex;flex:none;vertical-align:middle;padding:2px;background:#181310;border:1px solid #a88a56;border-radius:5px;box-shadow:0 0 0 1px #050403,inset 0 0 0 1px #4c4239}
+.icon img {width:100%;height:100%;object-fit:cover;border-radius:2px}
+.tab .icon {width:48px;height:48px}.tab.active .icon {border-color:#f8d553;box-shadow:0 0 4px #ffd84c}
+#app {flex:1;min-height:0;display:flex;flex-direction:column}
+.overview {margin:29px 4px 0;flex:1;min-height:0;display:flex;flex-direction:column;gap:5px}
+.professions {flex:1;min-height:0;overflow:auto;display:flex;flex-direction:column;gap:5px}
+.profession,.utility,.left-pane,.paper {border:2px ridge #674c32;border-radius:6px;box-shadow:inset 0 0 8px #000c,0 0 1px 1px #090706}
+.profession {flex:1 0 130px;display:flex;flex-direction:column;justify-content:flex-start;padding:19px 16px;background:#211a15 var(--panel-art) center/cover}
+.wide1 {--panel-art:url(assets/wow-overview-1.png)}.wide2 {--panel-art:url(assets/wow-overview-2.png)}
+h2,h3,p {margin:0}
+.profession h2,.utility h2,h3 {color:var(--gold);font:normal 15px Georgia,serif;text-shadow:1px 1px #000}
+.profession-row {display:grid;align-items:center;grid-template-columns:45px minmax(105px,140px) 1fr;gap:9px;margin:19px 4px 0 0;padding:0;border:0;background:none;text-align:left;color:var(--gold)}
+.skill-name {font-size:15px;overflow-wrap:anywhere}
+small {display:block;color:var(--dim);font:13px Georgia,serif}
+.bar {height:21px;min-width:0;position:relative;background:#050403;box-shadow:inset 0 1px 4px #000,0 0 0 1px #0a0805;border:1px solid #9c7646;border-radius:4px;overflow:hidden}
+.bar i {display:block;height:100%;min-width:1px;background:#5546a7 url(assets/wow-purple.png) left center/auto 100%;border-right:1px solid #fff2da}
+.wide2 .bar i,.aim .bar i {background-image:url(assets/wow-red.png)}
+.bar span {position:absolute;inset:0;text-align:center;font: bold 13px/19px "Arial Narrow",Arial,sans-serif;color:white;text-shadow:-1px -1px #000,1px 1px #000,0 1px 2px black;white-space:nowrap}
+.utilities {display:grid;grid-template-columns:repeat(3,1fr);gap:5px;flex:0 0 49%;min-height:0}
+.utility {padding:20px 18px;display:flex;align-items:center;flex-direction:column;text-align:center;background:#211b16 var(--art) center/100% 100%;min-width:0}
+.u1 {--art:url(assets/wow-utility-1.png)}.u2 {--art:url(assets/wow-utility-2.png)}.u3 {--art:url(assets/wow-utility-3.png)}
+.utility p {text-align:left;align-self:stretch;margin:18px 8px;color:#ece4d8;line-height:1.22;font-size:15px;text-shadow:1px 1px #000}
+.utility button {margin-top:auto}
+.utility button,footer button,.form button,.actions button,#reopen {background:#68180d url(assets/button.png) center/100% 138%;box-shadow:0 1px 2px black}
+.skillbar {height:59px;flex:none;display:grid;align-items:center;justify-items:center;padding:6px 9% 0 15%;border-bottom:2px ridge #715235}
+.skillbar .bar {width:85%}
+.workbench {flex:1;min-height:0;display:grid;grid-template-columns:45% minmax(0,1fr);gap:7px;padding:3px 3px 0}
+.left-pane,.paper {min-height:0}
+.left-pane {background:#221b16;display:flex;flex-direction:column;overflow:hidden}
+.searchbar {display:flex;align-items:center;gap:6px;background:#100e0b;padding:7px 8px 11px}
+.searchbar input,.searchbar select {min-width:0;background:#0e0c0b;color:var(--cream);height:23px;border:2px ridge #795e43;border-radius:5px;font:13px Georgia}
+.searchbar input {width:65%;padding-left:8px}.searchbar select {flex:1;color:var(--gold)}
+#recipes,.paper,.professions {scrollbar-color:#69492e #130f0d;scrollbar-width:thin}
+#recipes {overflow:auto;flex:1;padding:4px 7px 12px;background:#211b16 url(assets/wow-paper.png) center/cover}
+#recipes section+section {margin-top:14px}
+.category {width:100%;height:25px;display:flex;justify-content:space-between;align-items:center;text-align:left;padding:0 7px;background:#302016 url(assets/wow-category.png) center/100% 100%;color:#ffda28;font-size:17px;text-shadow:1px 1px black}
+.recipe {width:100%;display:flex;align-items:center;min-height:25px;gap:7px;text-align:left;padding:2px 6px;color:var(--cream);background:none;border:1px solid transparent;font:15px Georgia,serif;border-radius:0}
+.category+.recipe {margin-top:4px}
+.chosen {background:linear-gradient(90deg,transparent,#73612475,transparent);border-block:1px solid #866c354d}
+.arrows {width:20px;flex:none;display:flex;flex-direction:column;align-items:flex-end;padding-right:1px}
+.arrows i {width:10px;height:6px;background:currentColor;clip-path:polygon(50% 0,100% 85%,74% 85%,50% 49%,26% 85%,0 85%);margin-top:-2px}
+.tier3 {color:#f08848}.tier2 {color:#f1cf36}.tier1 {color:#6fd44f}
+.paper {background:#201914 url(assets/wow-paper.png) center/100% 100%;display:flex;flex-direction:column;padding:26px 26px 17px;overflow:auto;font-size:15px;line-height:1.35;text-shadow:1px 1px #0b0907}
+.item-head {display:flex;align-items:flex-start;gap:14px;min-height:86px}.item-head .icon {width:65px;height:65px;border-radius:50%;padding:3px;border:3px ridge #a8804c}.item-head img {border-radius:50%}
+.item-head h2 {padding-top:4px;font-size:18px;font-weight:normal;color:white}
+.paper h3 {font-size:14px;margin:20px 0 8px}
+.paper a,dialog a {color:#f1ca78}.paper p+p {margin-top:12px}
+.reagent {display:flex;align-items:center;gap:10px}
+.paper-tools {margin-top:auto;align-self:flex-end;padding-top:18px}
+.paper-tools button {background:#211a14;font-size:13px;color:var(--dim)}
+footer {display:flex;align-items:center;justify-content:flex-start;gap:6px;min-height:32px;padding:3px 5px}footer button:last-child {margin-left:auto}
+dialog {color:var(--cream);width:min(510px,94vw);max-height:85dvh;overflow:auto;padding:26px;border:4px ridge #876644;border-radius:5px;background:#211b16 url(assets/panel.png);box-shadow:0 5px 30px black}
+dialog::backdrop {background:#07050596}dialog h2 {font:normal 20px Georgia;color:var(--gold);margin-right:20px}dialog h3 {margin:15px 0 6px}dialog p {line-height:1.4;margin:8px 0}.close {right:0;top:0}
+.form,.form label {display:grid;gap:7px}.form {margin-top:15px;gap:12px}.form input,.form textarea,.form select {max-width:100%;min-width:0;padding:7px;background:#100e0c;color:#eee1cd;border:1px solid #786048;border-radius:3px}
+.scores {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.actions {display:flex;flex-wrap:wrap;gap:7px;margin-top:13px}.actions .icon {display:block;margin:auto}.entry {padding:9px 0;border-bottom:1px solid #634a33;overflow-wrap:anywhere}.empty {padding:8px}
+#notice {text-align:center;color:var(--gold);position:fixed;bottom:3px;left:10%;right:10%;pointer-events:none;font-size:14px;text-shadow:1px 1px black}
+@media(max-width:700px){body{padding:8px 48px 8px 8px}#window{width:calc(100vw - 56px);height:calc(100dvh - 16px)}.tab{width:43px;height:48px;padding:5px}.tab .icon{width:34px;height:34px}.profession-row{grid-template-columns:40px 1fr}.profession-row .bar{grid-column:1/-1}.professions{flex:1}.utilities{flex:0 0 auto}.utility{min-height:115px;padding:10px 4px}.utility p{display:none}.utility button{font-size:13px}.workbench{grid-template-columns:40% 1fr}.paper{padding:16px 10px}.item-head{display:block}.category,.recipe{font-size:14px}.searchbar{flex-wrap:wrap}.searchbar input{width:100%}footer{flex-wrap:wrap}footer button{font-size:13px}.skillbar .bar{width:95%}.reagent{display:block}}
+@media(max-width:480px){.workbench{display:flex;flex-direction:column}.left-pane{flex:0 0 36%}.paper{flex:1}.searchbar{flex-wrap:nowrap;padding:3px}.searchbar input{width:65%}.item-head{min-height:48px;display:flex}.item-head .icon{width:39px;height:39px}.paper h3{margin-top:10px}.reagent{display:flex}.profession{padding:10px}.utilities{grid-template-columns:1fr}.utility{min-height:34px;flex-direction:row;justify-content:space-between;padding:3px 8px}.utility button{margin:0}.titlebar h1{padding:0 30px 0 52px}.profession-row{margin-top:8px}.overview{margin-top:33px}}
+#recipes{flex:1;min-height:0;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#715338 #15100d}
+.searchbar input,.searchbar select{height:23px;min-width:0;border:2px ridge #786449;border-radius:5px;color:#ead8b5;background:#100d0a;padding:0 6px;font:13px Georgia,serif}
+.searchbar input{flex:1 1 65%;padding-left:19px;background:radial-gradient(circle at 8px 8px,transparent 2px,#87745c 3px,transparent 4px),#100d0a}
+.searchbar select{flex:0 1 32%;color:var(--gold);background:linear-gradient(#574634,#211a13)}
+.bar.red i{background-image:url(assets/wow-red.png)}
+#window{border-color:transparent;background:transparent;box-shadow:none;filter:drop-shadow(0 5px 9px #000a)}
+#window::before{content:"";position:absolute;inset:-6px -6px 2px;z-index:-1;pointer-events:none;background:url(assets/wow-edge-left.png) left center/10px 100% no-repeat,url(assets/wow-edge-right.png) right center/11px 100% no-repeat,#17130f url(assets/panel.png);clip-path:polygon(0 36px,36px 0,calc(100% - 4px) 0,100% 4px,100% 100%,0 100%)}
+#window::after{content:"";position:absolute;bottom:-6px;left:-6px;right:-6px;height:12px;pointer-events:none;border:solid transparent;border-width:0 14px 12px;border-image:url(assets/wow-edge-bottom.png) 0 14 12 stretch}
+.titlebar{margin:-4px -3px 0;height:33px;border-top-left-radius:36px}.titlebar h1{letter-spacing:.025em}
+#app{padding-bottom:5px}
+.profession,.utility{border:0;box-shadow:none}.profession-row{grid-template-columns:45px minmax(142px,19%) 1fr;padding-right:22px}.skill-name{white-space:normal}
+.utility .utility-action{border:0;background:none;box-shadow:none;display:flex;align-items:center;text-align:left;gap:8px;padding:0;align-self:flex-start;color:#ffd53f}
+.utility-action:hover span:last-child{text-decoration:underline}
+#recipes{background:#211b16 url(assets/wow-overview-1.png) left top/260% 100%}
+.category{background:transparent;border-style:solid;border-width:5px 8px;border-image:url(assets/wow-category.png) 5 8 fill stretch;padding:0;line-height:14px}
+.tier1,.tier2,.tier3{height:16px;background-position:right center;background-repeat:no-repeat;background-size:auto 100%}
+.tier1{background-image:url(assets/wow-arrow-green.png);background-size:auto 10px}.tier2{background-image:url(assets/wow-arrow-yellow.png);background-size:auto 13px}.tier3{background-image:url(assets/wow-arrow-orange.png)}
+.arrows i{display:none}
+footer button,.form button,.actions button,#reopen{background:transparent;border:solid transparent;border-width:5px 7px;border-image:url(assets/wow-button.png) 5 7 fill stretch;padding:0 4px}
+@media(max-width:700px){.profession-row{grid-template-columns:45px 1fr}.utility .utility-action{align-self:center;flex-direction:column}.utility-action .icon{width:33px;height:33px}}
+@media(max-width:480px){.utility .utility-action{flex-direction:row}.utility-action .icon{width:25px;height:25px}}
+.paper{background-color:#1c1612;background-image:linear-gradient(to bottom,#1c1612,transparent 16%),url(assets/wow-paper.png);background-size:100% 55%,100% auto;background-position:bottom;background-repeat:no-repeat}
+#recipes{background:linear-gradient(105deg,#1c1713,#231c16 67%,#17130f)}
+@media(min-width:701px){.profession-row{grid-template-columns:45px 146px minmax(0,1fr)}}
+@font-face{font-family:WoW Friz;src:url("assets/FRIZQT__.ttf") format("truetype");font-style:normal;font-weight:400;font-display:swap}
+:root{--ui-font:"WoW Friz",Georgia,serif;font-family:var(--ui-font)}
+.profession h2,.utility h2,h3,small,.searchbar input,.searchbar select,.recipe,dialog h2,.bar span{font-family:var(--ui-font);font-weight:400}
+.skillbar .bar span{font-size:13px}
+
+body{padding:8px 68px 6px 9px;display:block}
+#window{width:100%;height:calc(100dvh - 14px);min-height:0}
+dialog:has(textarea[name=code]){width:min(760px,94vw);background:linear-gradient(#e4c996ed,#d6b783ed),url(assets/wow-paper.png) center/cover;color:#322012;border:5px ridge #966d3d}
+dialog:has(textarea[name=code]) h2{color:#532e18}
+.form textarea[name=code]{color:#2c1b10;background:#fff1cd99;font:16px/1.55 var(--ui-font);tab-size:4;resize:vertical}
+#check-result,.entry pre{white-space:pre-wrap;overflow-wrap:anywhere;margin:0}
+@media(max-width:700px){body{padding-right:46px}}
